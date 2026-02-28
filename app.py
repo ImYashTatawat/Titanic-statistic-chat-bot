@@ -6,7 +6,7 @@ from langchain_groq import ChatGroq
 
 st.title("Titanic Statistics Chatbot")
 
-df = pd.read_csv("titanic.csv")
+df = pd.read_csv("Titanic-Dataset.csv")
 
 groq_api_key = st.secrets["GROQ_API_KEY"]
 
@@ -22,4 +22,5 @@ question = st.text_input("Ask a question about Titanic dataset")
 if st.button("Ask"):
     answer = agent.run(question)
     st.write(answer)
+
 
