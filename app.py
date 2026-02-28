@@ -11,7 +11,7 @@ df = pd.read_csv("titanic.csv")
 groq_api_key = st.secrets["GROQ_API_KEY"]
 
 llm = ChatGroq(
-    model="llama-3.1-8b-instant",
+    model="llama-3.3-70b-versatile",
     groq_api_key=groq_api_key
 )
 
@@ -22,3 +22,4 @@ question = st.text_input("Ask a question about Titanic dataset")
 if st.button("Ask"):
     answer = agent.run(question)
     st.write(answer)
+
