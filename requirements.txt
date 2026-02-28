@@ -4,6 +4,8 @@ pandas
 matplotlib
 seaborn
 streamlit
+altair>=4.0,<5.0
+
 langchain
 openai
 python-dotenv
