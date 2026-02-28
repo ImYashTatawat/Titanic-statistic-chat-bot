@@ -1,16 +1,24 @@
 import streamlit as st
-import requests
+import pandas as pd
+import os
+from langchain_experimental.agents import create_pandas_dataframe_agent
+from langchain_groq import ChatGroq
 
-st.title("🚢 Titanic Dataset Chatbot")
+st.title("Titanic Statistics Chatbot")
+
+df = pd.read_csv("titanic.csv")
+
+groq_api_key = st.secrets["GROQ_API_KEY"]
+
+llm = ChatGroq(
+    model="llama-3.1-8b-instant",
+    groq_api_key=groq_api_key
+)
+
+agent = create_pandas_dataframe_agent(llm, df, verbose=True)
 
 question = st.text_input("Ask a question about Titanic dataset")
 
 if st.button("Ask"):
-    response = requests.post(
-        "http://127.0.0.1:8000/ask",
-        json={"question": question}
-    )
-
-    if response.status_code == 200:
-        # st.write(response.json()["response"])
-        st.write(response.json())
+    answer = agent.run(question)
+    st.write(answer)
