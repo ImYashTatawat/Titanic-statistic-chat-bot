@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+matplotlib
+seaborn
+streamlit
+langchain
+openai
+python-dotenv
