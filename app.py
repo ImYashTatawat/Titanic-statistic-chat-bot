@@ -14,13 +14,18 @@ llm = ChatGroq(
     model="llama-3.3-70b-versatile",
     groq_api_key=groq_api_key
 )
-
-agent = create_pandas_dataframe_agent(llm, df, verbose=True)
+agent = create_pandas_dataframe_agent(
+    llm,
+    df,
+    verbose=True,
+    allow_dangerous_code=True
+)True)
 
 question = st.text_input("Ask a question about Titanic dataset")
 
 if st.button("Ask"):
     answer = agent.run(question)
     st.write(answer)
+
 
 
